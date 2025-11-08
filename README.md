@@ -1,9 +1,9 @@
 🧠 Cybersecurity Learning Journal
 
-Welcome to my Cybersecurity Learning Journey — where I build projects, learn new tools, and document my progress publicly.
-This repository is a part of my CyberSecurity Challenge to learn, build, and share cybersecurity projects consistently.
+Welcome to my **Cybersecurity Learning Journey** — where I build projects, learn new tools, and document my progress publicly.
+This repository is a part of my **#CyberSecurityLearning Challenge** to learn, build, and share cybersecurity projects consistently.
 
-Follow along on my [LinkedIn](https://www.linkedin.com) for updates 🚀
+Follow along on my [LinkedIn](https://www.linkedin.com/in/aniruddha-bhosale-659856297/) for updates 🚀
 
 ---
 
