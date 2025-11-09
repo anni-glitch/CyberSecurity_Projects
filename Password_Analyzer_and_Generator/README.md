@@ -26,48 +26,61 @@ This tool helps you:
 
 ---
 
-## How It Works
-1. Entropy Calculation
+## ⚙️ How It Works
 
-Uses Shannon’s entropy approximation:
-entropy = length × log₂(character_pool_size)
-The more diverse and longer the password, the higher the entropy (in bits).
+### 1️⃣ Entropy Calculation
+The tool uses **Shannon’s entropy approximation** to estimate randomness:
 
-2. Scoring System
-Criteria	Points
-8–11 characters	+1
-12–15 characters	+2
-≥16 characters	+3
-Lowercase letters	+1
-Uppercase letters	+1
-Digits	+1
-Symbols	+1
+\[
+\text{entropy} = \text{length} \times \log_2(\text{character pool size})
+\]
 
-🔻 Deductions:
-Repeated sequences (like aaa) → −1
-Common patterns (qwerty, 1234) → −1
-Found in blacklist → −2
-Total score = 0–8
+The **longer** and **more diverse** a password is, the higher its entropy (measured in bits).  
+Higher entropy = greater unpredictability = stronger password.
 
-🟢 Strong (≥6, entropy ≥80 bits)
+---
 
-🟡 Medium (≥4, entropy ≥50 bits)
+### 2️⃣ Scoring System
 
-🔴 Weak / Very Weak otherwise
+| **Criteria** | **Points** |
+|---------------|------------|
+| 8–11 characters | +1 |
+| 12–15 characters | +2 |
+| ≥16 characters | +3 |
+| Contains lowercase letters | +1 |
+| Contains uppercase letters | +1 |
+| Contains digits | +1 |
+| Contains symbols | +1 |
+
+**🔻 Deductions**
+
+| **Weakness** | **Penalty** |
+|---------------|-------------|
+| Repeated sequences (e.g., `aaa`) | −1 |
+| Common patterns (e.g., `qwerty`, `1234`) | −1 |
+| Found in blacklist | −2 |
+
+**Final Score Range:** `0 – 8`
+
+| **Level** | **Condition** |
+|------------|----------------|
+| 🟢 **Strong** | Score ≥ 6 **and** Entropy ≥ 80 bits |
+| 🟡 **Medium** | Score ≥ 4 **and** Entropy ≥ 50 bits |
+| 🔴 **Weak / Very Weak** | Otherwise |
 
 ---
 
 ## Command Reference
-___________________________________________________________________________________________________________________
-**Command**	                                                                |            **Description**          |
-__________________________________________________________________________________________________________________|
-python password_analyzer.py	                                                |       Run interactively             |
-python password_analyzer.py -p "My@Pass123"	                                |       Analyze a single password     |
-python password_analyzer.py -f test_passwords.txt	                          |       Analyze multiple passwords    |
-python password_analyzer.py --generate                                      |   	  Generate a random password    |
-python password_analyzer.py --generate --gen-length 20	                    |       Generate 20-char password     |
-python password_analyzer.py -p "password" --blacklist common_passwords.txt	|       Use blacklist                 |
-___________________________________________________________________________________________________________________
+
+| **Command** | **Description** |
+|--------------|----------------|
+| `python password_analyzer.py` | Run interactively |
+| `python password_analyzer.py -p "My@Pass123"` | Analyze a single password |
+| `python password_analyzer.py -f test_passwords.txt` | Analyze multiple passwords from a file |
+| `python password_analyzer.py --generate` | Generate a random secure password |
+| `python password_analyzer.py --generate --gen-length 20` | Generate a 20-character password |
+| `python password_analyzer.py -p "password" --blacklist common_passwords.txt` | Analyze a password with blacklist protection |
+
 
 ---
 
