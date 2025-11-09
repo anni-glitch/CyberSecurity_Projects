@@ -26,21 +26,19 @@ This tool helps you:
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 
-### 1️⃣ Entropy Calculation
+### Entropy Calculation
 The tool uses **Shannon’s entropy approximation** to estimate randomness:
 
-\[
-\text{entropy} = \text{length} \times \log_2(\text{character pool size})
-\]
+{entropy} = {length} x log_2({character pool size})
 
 The **longer** and **more diverse** a password is, the higher its entropy (measured in bits).  
 Higher entropy = greater unpredictability = stronger password.
 
 ---
 
-### 2️⃣ Scoring System
+### Scoring System
 
 | **Criteria** | **Points** |
 |---------------|------------|
