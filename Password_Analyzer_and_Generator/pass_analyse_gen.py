@@ -71,7 +71,7 @@ def check_strength(password: str, blacklist: set = None) -> dict:
 
     # Blacklist
     blacklisted = False
-    if blacklist is not None and password in blacklist:
+    if blacklist is not None and password.lower() in blacklist:
         blacklisted = True
         remarks.append("Found in common-password blacklist")
         score -= 2
@@ -115,12 +115,17 @@ def generate_password(length: int = 16, use_upper=True, use_digits=True, use_sym
 
 
 # Blacklist Loader
-def load_blacklist(path="common_passwords.txt") -> set:
-    """Load a blacklist file (if exists)."""
-    if not os.path.isfile(path):
+def load_blacklist(path="common_pass.txt") -> set:
+    """Load a blacklist file from the script's directory, if it exists."""
+    import os
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, path)
+    if not os.path.isfile(file_path):
+        print(f"Blacklist file not found at: {file_path}")
         return set()
-    with open(path, "r", encoding="utf-8", errors="ignore") as f:
-        return set(line.strip() for line in f if line.strip())
+    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+        return set(line.strip().lower() for line in f if line.strip())
+
 
 
 # Pretty Output
@@ -156,7 +161,8 @@ def main():
     parser.add_argument("--no-upper", action="store_true", help="Exclude uppercase letters")
     parser.add_argument("--no-digits", action="store_true", help="Exclude digits")
     parser.add_argument("--no-symbols", action="store_true", help="Exclude symbols")
-    parser.add_argument("--blacklist", default="common_passwords.txt", help="Path to blacklist file")
+    parser.add_argument("--blacklist", default="common_pass.txt", help="Path to blacklist file")
+
 
     args = parser.parse_args()
 
